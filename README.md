@@ -1,2 +1,0 @@
-# NetworksProject
-Mail Application

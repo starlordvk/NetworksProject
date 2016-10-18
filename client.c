@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
 {
   int sockfd, portNo, status;
   struct sockaddr_in servAddr;
-  char ipbuffer[256], msgbuffer[256], pending_msg[100];
+  char ipbuffer[256], msgbuffer[256];
   char *ipaddr, *message;
 
   portNo = atoi(argv[1]);
@@ -39,17 +39,6 @@ int main(int argc, char* argv[])
     }
 
   fprintf(stdout, "Connection Successful\n");
-
-  int count_pending_msg;
-  recv(sockfd,(int*)&count_pending_msg,sizeof(int),0);
-  
-  fprintf(stdout, "Pending Messages are: \n");
-  
-  int i;
-  for(i = 0; i < count_pending_msg; i++){
-  int m = recv(sockfd, pending_msg, sizeof(pending_msg), 0);
-  pending_msg[m] = '\0';
-  printf("%s\n", pending_msg);}
 
   int n = send(sockfd, ipaddr, strlen(ipaddr), 0);
   recv(sockfd, ipbuffer, sizeof(ipbuffer), 0);
